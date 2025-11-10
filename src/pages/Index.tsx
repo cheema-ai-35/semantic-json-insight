@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { JsonInput } from "@/components/JsonInput";
+import { InlineDiffEditor } from "@/components/InlineDiffEditor";
 import { DiffViewer } from "@/components/DiffViewer";
 import { Button } from "@/components/ui/button";
 import { compareJSON, DiffNode } from "@/lib/jsonDiff";
@@ -154,11 +154,13 @@ const Index = () => {
         {/* Input Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="bg-card rounded-lg border p-6 shadow-sm">
-            <JsonInput
+            <InlineDiffEditor
               value={leftJson}
               onChange={setLeftJson}
               label="Original JSON"
               placeholder='{"key": "value"}'
+              diffs={diffs}
+              isReference={true}
             />
             <div className="mt-4">
               <Button
@@ -174,11 +176,13 @@ const Index = () => {
           </div>
 
           <div className="bg-card rounded-lg border p-6 shadow-sm">
-            <JsonInput
+            <InlineDiffEditor
               value={rightJson}
               onChange={setRightJson}
               label="Modified JSON"
               placeholder='{"key": "new value"}'
+              diffs={diffs}
+              isReference={false}
             />
             <div className="mt-4">
               <Button
